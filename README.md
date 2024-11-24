@@ -71,6 +71,6 @@ SQL-PROJ/
 Use SQL Injection payloads like:
 - Username: `' OR '1'='1`
 - Username: ` ' OR (SELECT COUNT(*) FROM users) > 0 -- `
-- Password: Leave blank or input anything.
+- Password: Input anything.
 ### Mitigation Page
 Input containing potential SQL Injection patterns (e.g., `' OR '1'='1`) will be rejected with an error message.
