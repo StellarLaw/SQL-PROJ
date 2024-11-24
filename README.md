@@ -11,9 +11,9 @@ The project uses:
 ### Prerequisites
 Make sure you have the following installed on your machine:
 1. **Node.js** (v14 or newer):
-- Download and install from [https://nodejs.org/\](https://nodejs.org/)
+- Download and install from [https://nodejs.org]
 2. **Git**:
-- Download and install from [https://git-scm.com/\](https://git-scm.com/)
+- Download and install from [https://git-scm.com/]
 ### Clone the Repository
 To get a copy of the project, clone it using Git:
 ```bash
