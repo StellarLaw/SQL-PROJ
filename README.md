@@ -60,7 +60,6 @@ SQL-PROJ/
 │   ├── styles.css       # Global CSS Styles
 └── node_modules/   # Installed dependencies
 ```
-## Notes for Your Teammates
 ### Setting Up SQLite Database:
 - The database will be created automatically when you run the server for the first time.
 - If you encounter issues, delete the database.db file and restart the server to recreate it.
