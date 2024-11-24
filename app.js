@@ -33,34 +33,24 @@ db.serialize(() => {
     (3, 'test', 'test123', 'ACC987654', 500.00)`);
 });
 
-app.post("/vulnerable-login", (req, res) => {
-  const { username, password } = req.body;
-  const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
 
-  db.all(query, [], (err, rows) => {
-    if (err) {
-      res.status(500).send(`<h2>Database error.</h2><p>Query: ${query}</p>`);
-    } else if (rows.length > 0) {
-      res.redirect(`/account/${rows[0].username}`);
-    } else if (username.includes("' OR '1'='1")) {
-      db.all("SELECT * FROM users", [], (err, allRows) => {
-        if (err) {
-          res.status(500).send("Database error during injection.");
-        } else {
-          res.send(
-            `<h2>SQL Injection Successful</h2>
-             <p>All User Data Retrieved: <code>${JSON.stringify(allRows)}</code></p>`
-          );
-        }
-      });
-    } else {
-      res.send(
-        `<h2>Login Failed</h2>
-         <p>Query Executed: <code>${query}</code></p>`
-      );
-    }
+app.post("/vulnerable-login", (req, res) => {
+    const { username, password } = req.body;
+    const query = `SELECT id, username, account_number, balance FROM users WHERE username = '${username}' AND password = '${password}'`;
+  
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        res.status(500).send(`<h2>Database error.</h2><p>Query: ${query}</p>`);
+      } else if (rows.length > 0) {
+        res.redirect(`/account/${rows[0].username}`);
+      } else {
+        res.send(
+          `<h2>Login Failed</h2>
+           <p>Query Executed: <code>${query}</code></p>`
+        );
+      }
+    });
   });
-});
 
 app.post("/secure-login", (req, res) => {
   const { username, password } = req.body;
