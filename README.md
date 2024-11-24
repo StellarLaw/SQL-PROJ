@@ -65,15 +65,7 @@ SQL-PROJ/
 - If you encounter issues, delete the database.db file and restart the server to recreate it.
 ### Starting Over:
 - To reset the database, delete database.db, and ensure the app.js file has the logic to recreate the table on startup.
-### Pushing Updates:
-Use Git for version control.
-Before pushing to the shared repository:
-```bash
-git pull origin main --rebase
-git push origin main
-```
-### Collaborating:
-- Ensure you git pull frequently to avoid merge conflicts.
+
 ## Testing the Application
 ### Vulnerable Login Page
 Use SQL Injection payloads like:
