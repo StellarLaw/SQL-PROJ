@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Injection Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>SQL Injection Demo</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="demo.html">SQL Demo</a></li>
+      <li><a href="mitigation.html">Mitigation</a></li>
+      <li><a href="references.html">References</a></li>
+    </ul>
+  </nav>
+  <main>
+    <form action="/vulnerable-login" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Try: <code>' OR '1'='1</code> as the username to bypass login.</p>
+  </main>
+</body>
+</html>

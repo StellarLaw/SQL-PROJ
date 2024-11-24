@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Injection Mitigation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>SQL Injection Mitigation</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="demo.html">SQL Demo</a></li>
+      <li><a href="mitigation.html">Mitigation</a></li>
+      <li><a href="references.html">References</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h2>Secure Login Form</h2>
+    <p>
+      This form is protected against SQL Injection using:
+      <ul>
+        <li>Regular expressions to detect potential malicious input.</li>
+        <li>Parameterized queries to securely handle input.</li>
+      </ul>
+    </p>
+    <form action="/secure-login" method="POST">
+      <label for="username-secure">Username:</label>
+      <input type="text" id="username-secure" name="username" required>
+      <label for="password-secure">Password:</label>
+      <input type="password" id="password-secure" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Note: Input with suspicious patterns (e.g., <code>' OR '1'='1</code>) will be rejected.</p>
+  </main>
+  <footer>
+    <p>© 2024 SQL Injection Project</p>
+  </footer>
+</body>
+</html>
