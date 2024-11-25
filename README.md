@@ -70,7 +70,10 @@ SQL-PROJ/
 ### Vulnerable Login Page
 Use SQL Injection payloads like:
 - Username: `' OR '1'='1`
+- Password: `' OR '1'='1`
 - Username: ` ' OR (SELECT COUNT(*) FROM users) > 0 -- `
+- Username: `' OR '1'='1 -- `
 - Password: Input anything.
+- ("--" Makes it so password is not required, i.e anything can be input)
 ### Mitigation Page
 Input containing potential SQL Injection patterns (e.g., `' OR '1'='1`) will be rejected with an error message.
