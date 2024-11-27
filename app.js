@@ -34,23 +34,34 @@ db.serialize(() => {
 });
 
 
-app.post("/vulnerable-login", (req, res) => {
-    const { username, password } = req.body;
-    const query = `SELECT id, username, account_number, balance FROM users WHERE username = '${username}' AND password = '${password}'`;
-  
-    db.all(query, [], (err, rows) => {
-      if (err) {
-        res.status(500).send(`<h2>Database error.</h2><p>Query: ${query}</p>`);
-      } else if (rows.length > 0) {
-        res.redirect(`/account/${rows[0].username}`);
-      } else {
-        res.send(
-          `<h2>Login Failed</h2>
-           <p>Query Executed: <code>${query}</code></p>`
-        );
-      }
-    });
+app.post("/secure-login", (req, res) => {
+  const { username, password } = req.body;
+
+  const sqlInjectionRegex = /(\b(SELECT|UNION|INSERT|DELETE|UPDATE|DROP|;|--|\|\|)\b|'|"|=|OR|AND|--)/i;
+
+  if (sqlInjectionRegex.test(username) || sqlInjectionRegex.test(password)) {
+    return res.status(400).send(`
+      <h2>Invalid Input Detected</h2>
+      <p>Your input contains potential SQL Injection patterns and has been rejected.</p>
+      <a href="/mitigation.html">Go Back</a>
+    `);
+  }
+
+  const query = `SELECT * FROM users WHERE username = ? AND password = ?`;
+
+  db.all(query, [username, password], (err, rows) => {
+    if (err) {
+      res.status(500).send("<h2>Database error.</h2>");
+    } else if (rows.length > 0) {
+      res.redirect(`/account/${rows[0].username}`);
+    } else {
+      res.send(
+        `<h2>Login Failed</h2>
+         <p>Invalid username or password.</p>`
+      );
+    }
   });
+});
 
 app.post("/secure-login", (req, res) => {
   const { username, password } = req.body;
