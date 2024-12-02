@@ -1,4 +1,9 @@
 # SQL Injection Project
+By:
+    Alek Coupet
+    William Lee
+    Petr Zolotarev 
+
 ## Description
 This project demonstrates the risks of SQL Injection vulnerabilities and showcases secure coding practices to mitigate them. The application consists of two main components:
 1. **Vulnerable Login Page**: Demonstrates how SQL Injection attacks can exploit insecure code.
